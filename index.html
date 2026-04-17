@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toko Bunga Segar</title>
+
+  <!-- ============================================================
+    CDN 1: Bootstrap 5 CSS
+    Ini adalah file CSS utama Bootstrap.
+    Bootstrap menyediakan class siap pakai seperti:
+    - .container, .row, .col → untuk layout grid
+    - .navbar, .card, .btn → untuk komponen UI
+    - .text-center, .fw-bold → untuk styling teks
+  ============================================================ -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+  />
+
+  <!-- ============================================================
+    CDN 2: Bootstrap Icons
+    Library ikon dari Bootstrap.
+    Cara pakai: <i class="bi bi-nama-ikon"></i>
+    Contoh ikon yang dipakai di sini: bi-flower1, bi-whatsapp, dll.
+    Browse semua ikon di: https://icons.getbootstrap.com/
+  ============================================================ -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <!-- ============================================================
+    CDN 3: Google Fonts
+    Mengimpor font "Plus Jakarta Sans" — font sans-serif modern.
+    Ganti nama font di sini jika ingin menggunakan font lain.
+    Browse font di: https://fonts.google.com/
+  ============================================================ -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ============================================================
+    CUSTOM CSS
+    CSS tambahan di luar Bootstrap untuk detail visual kustom.
+    Ubah nilai warna, ukuran, atau animasi sesuai selera kamu.
+  ============================================================ -->
+  <style>
+    /* ── VARIABEL WARNA UTAMA ──────────────────────────────────
+       Ganti nilai di sini untuk mengubah tema warna seluruh halaman.
+       --hijau-utama  : warna aksen utama (tombol, border, dsb)
+       --hijau-muda   : warna latar section bergantian
+       --hijau-gelap  : warna teks atau elemen gelap
+    ─────────────────────────────────────────────────────────── */
+    :root {
+      --hijau-utama : #3a7d44;
+      --hijau-muda  : #f0f7f1;
+      --hijau-gelap : #1f4d28;
+      --krem        : #fdfaf6;
+      --shadow-card : 0 8px 24px rgba(58, 125, 68, 0.15);
+    }
+
+    /* ── GLOBAL ─────────────────────────────────────────────── */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--krem);
+      color: #2c2c2c;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────────── */
+    /* Ubah background-color di sini untuk mengganti warna navbar */
+    .navbar {
+      background-color: #ffffff !important;
+      border-bottom: 2px solid #e8f5e9;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--hijau-gelap) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .navbar-brand span {
+      color: var(--hijau-utama);
+    }
+
+    /* Warna link menu navbar */
+    .nav-link {
+      color: #444 !important;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--hijau-utama) !important;
+    }
+
+    /* ── HERO SECTION ───────────────────────────────────────── */
+    /* Ubah background-color atau tambah gambar bg di sini */
+    .hero {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f0fdf4 50%, #fdfaf6 100%);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dekorasi lingkaran di belakang hero (efek visual) */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(58,125,68,0.08) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(58,125,68,0.06) 0%, transparent 70%);
+      bottom: -50px;
+      left: -50px;
+      border-radius: 50%;
+    }
+
+    /* ── Teks Hero — GANTI KONTEN DI BAGIAN HTML HERO ───────── */
+    .hero-badge {
+      display: inline-block;
+      background: rgba(58,125,68,0.1);
+      color: var(--hijau-utama);
+      border: 1px solid rgba(58,125,68,0.2);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); /* Ukuran responsif otomatis */
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--hijau-gelap);
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      color: var(--hijau-utama);
+      position: relative;
+    }
+
+    .hero p.lead {
+      font-size: 1.1rem;
+      color: #5a6a5e;
+      max-width: 560px;
+    }
+
+    /* Gambar bunga di hero — placeholder emoji besar */
+    .hero-visual {
+      font-size: 9rem;
+      line-height: 1;
+      filter: drop-shadow(0 20px 40px rgba(58,125,68,0.2));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Animasi mengambang untuk visual hero */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-16px); }
+    }
+
+    /* Tombol utama (CTA) di hero */
+    .btn-hijau {
+      background-color: var(--hijau-utama);
+      border-color: var(--hijau-utama);
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(58,125,68,0.3);
+    }
+
+    .btn-hijau:hover {
+      background-color: var(--hijau-gelap);
+      border-color: var(--hijau-gelap);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(58,125,68,0.4);
+    }
+
+    /* Tombol outline (secondary) */
+    .btn-outline-hijau {
+      border: 2px solid var(--hijau-utama);
+      color: var(--hijau-utama);
+      font-weight: 600;
+      padding: 11px 28px;
+      border-radius: 50px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-hijau:hover {
+      background-color: var(--hijau-utama);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION JUDUL ──────────────────────────────────────── */
+    /* Judul pembatas antar section produk */
+    .section-label {
+      display: inline-block;
+      background: rgba(58,125,68,0.1);
+      color: var(--hijau-utama);
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--hijau-gelap);
+      letter-spacing: -0.5px;
+    }
+
+    /* Garis dekorasi di bawah judul section */
+    .section-divider {
+      width: 50px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--hijau-utama), #a8d5b5);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+
+    /* ── SECTION BERGANTIAN WARNA ───────────────────────────── */
+    .section-putih { background-color: #ffffff; }
+    .section-hijau { background-color: var(--hijau-muda); }
+
+    /* ── KARTU PRODUK ───────────────────────────────────────── */
+    /* Ini adalah komponen card untuk setiap produk.
+       Efek hover: card naik ke atas + shadow lebih dalam */
+    .product-card {
+      border: 1px solid #e8f0ea;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%; /* Agar semua card sama tinggi dalam 1 baris */
+    }
+
+    /* ── EFEK HOVER CARD — ANIMASI MENGANGKAT ───────────────── */
+    .product-card:hover {
+      transform: translateY(-8px);          /* Card naik 8px */
+      box-shadow: var(--shadow-card);       /* Shadow lebih jelas */
+    }
+
+    /* Wrapper gambar produk */
+    .card-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: var(--hijau-muda);
+      height: 200px; /* Ubah angka ini untuk mengubah tinggi area gambar */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Efek zoom gambar saat hover */
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .card-img-wrapper img {
+      transform: scale(1.05); /* Zoom 5% saat hover */
+    }
+
+    /* Badge kategori di pojok gambar */
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--hijau-utama);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    /* Body card (nama, harga, tombol) */
+    .card-body-custom {
+      padding: 16px;
+    }
+
+    /* ── NAMA PRODUK — GANTI DI BAGIAN HTML CARD ────────────── */
+    .card-product-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a2e1e;
+      margin-bottom: 4px;
+      /* Batasi nama produk hanya 2 baris agar card rapi */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── HARGA PRODUK — GANTI DI BAGIAN HTML CARD ───────────── */
+    .card-price {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--hijau-utama);
+      margin-bottom: 12px;
+    }
+
+    /* Tombol WhatsApp di card */
+    .btn-wa {
+      background-color: #25d366;
+      border-color: #25d366;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 50px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .btn-wa:hover {
+      background-color: #1da851;
+      border-color: #1da851;
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    /* ── STATS / HIGHLIGHT ──────────────────────────────────── */
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--hijau-utama);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #6b7f6e;
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--hijau-gelap);
+      color: #c8dcc9;
+    }
+
+    footer h5 {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    footer a {
+      color: #9ec9a2;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+
+    /* Ikon sosial media di footer */
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-right: 8px;
+      transition: background 0.2s;
+    }
+
+    .social-icon:hover {
+      background: var(--hijau-utama);
+    }
+
+    /* Copyright bar paling bawah */
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 0;
+      font-size: 0.82rem;
+      color: #7a9f7e;
+      text-align: center;
+    }
+
+    /* ── PLACEHOLDER GAMBAR ─────────────────────────────────── */
+    /* Style untuk gambar placeholder emoji produk */
+    .placeholder-img {
+      font-size: 5rem;
+      line-height: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+    NAVBAR — Navigasi utama yang sticky (selalu tampil saat scroll)
+    
+    Untuk mengganti nama menu: cari teks di dalam tag <a class="nav-link">
+    Untuk mengganti nama toko: cari tag <a class="navbar-brand">
+    
+    data-bs-target="#navbarMenu" harus sama dengan id di <div id="navbarMenu">
+    agar tombol hamburger (mobile) berfungsi.
+  ============================================================ -->
+  <nav class="navbar navbar-expand-lg sticky-top py-3">
+    <div class="container">
+
+      <!-- ── Logo / Nama Toko ── GANTI NAMA DI SINI ── -->
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-flower1 me-1"></i>Bunga<span>Segar</span>
+      </a>
+
+      <!-- Tombol hamburger untuk layar mobile (otomatis oleh Bootstrap) -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- ── Daftar Menu ── TAMBAH/HAPUS <li> UNTUK MENGUBAH MENU ── -->
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto gap-1">
+          <!-- href="#beranda" → scroll ke section dengan id="beranda" -->
+          <li class="nav-item"><a class="nav-link px-3" href="#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#papan-bunga">Papan Bunga</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#buket">Buket</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="#rangkaian">Rangkaian</a></li>
+          <!-- Tombol WhatsApp di navbar -->
+          <li class="nav-item ms-2">
+            <!-- GANTI nomor WA: ubah 6281234567890 ke nomor kamu (format internasional, tanpa +) -->
+            <a class="btn btn-hijau btn-sm px-4" href="https://wa.me/6281234567890" target="_blank">
+              <i class="bi bi-whatsapp me-1"></i> Hubungi Kami
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- akhir NAVBAR -->
+
+
+  <!-- ============================================================
+    HERO SECTION — Tampilan utama paling atas halaman
+    
+    Untuk mengubah teks sambutan: cari tag <h1> dan <p class="lead">
+    Untuk mengubah visual: ganti emoji di dalam <div class="hero-visual">
+  ============================================================ -->
+  <section class="hero" id="beranda">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+
+        <!-- Kolom kiri: teks -->
+        <div class="col-lg-6">
+          <!-- Badge kecil di atas judul -->
+          <div class="hero-badge">
+            <i class="bi bi-patch-check-fill me-1"></i> Bunga Segar Setiap Hari
+          </div>
+
+          <!-- ── JUDUL UTAMA — GANTI TEKS DI SINI ── -->
+          <h1>
+            Ungkapkan Rasa<br/>dengan
+            <span>Bunga Terbaik</span>
+          </h1>
+
+          <!-- ── DESKRIPSI SINGKAT — GANTI TEKS DI SINI ── -->
+          <p class="lead mt-3 mb-4">
+            Kami menghadirkan rangkaian bunga segar pilihan untuk setiap momen
+            spesialmu — dari pernikahan, wisuda, hingga ucapan selamat yang penuh makna.
+          </p>
+
+          <!-- Tombol aksi -->
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#papan-bunga" class="btn btn-hijau">
+              Lihat Katalog <i class="bi bi-arrow-down-circle ms-1"></i>
+            </a>
+            <!-- GANTI nomor WA di href berikut -->
+            <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline-hijau">
+              <i class="bi bi-whatsapp me-1"></i> Pesan Sekarang
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom kanan: visual/gambar -->
+        <div class="col-lg-6 text-center">
+          <!-- Ganti emoji ini dengan tag <img> jika kamu sudah punya foto -->
+          <div class="hero-visual">🌸</div>
+        </div>
+
+      </div>
+
+      <!-- Stats highlight di bawah hero -->
+      <div class="row mt-5 pt-3 border-top">
+        <!-- ── GANTI ANGKA DAN LABEL STATISTIK DI SINI ── -->
+        <div class="col-4 stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Pelanggan Puas</div>
+        </div>
+        <div class="col-4 stat-item">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Tahun Berpengalaman</div>
+        </div>
+        <div class="col-4 stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Jenis Produk</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- akhir HERO SECTION -->
+
+
+  <!-- ============================================================
+    SECTION 1: PAPAN BUNGA
+    
+    Untuk menambah produk: duplikat satu blok <div class="col-6 col-lg-3">
+    Untuk menghapus produk: hapus blok <div class="col-6 col-lg-3"> yang sesuai
+    
+    PENJELASAN KELAS GRID:
+    - col-6    → di HP (mobile), tiap produk ambil 6 dari 12 kolom = 2 kolom per baris
+    - col-lg-3 → di Desktop (lg ke atas), tiap produk ambil 3 dari 12 kolom = 4 kolom per baris
+  ============================================================ -->
+  <section class="py-5 section-putih" id="papan-bunga">
+    <div class="container">
+
+      <!-- Judul Section -->
+      <div class="text-center mb-5">
+        <div class="section-label">Koleksi Kami</div>
+        <h2 class="section-title">Papan Bunga</h2>
+        <p class="text-muted mt-2">Cocok untuk ucapan selamat, pembukaan usaha, & duka cita</p>
+        <div class="section-divider mx-auto"></div>
+      </div>
+
+      <!-- Grid Produk -->
+      <div class="row g-3 g-lg-4">
+
+        <!-- ── PRODUK 1 ── GANTI nama, harga, dan nomor WA di sini ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <!--
+                Untuk mengganti gambar:
+                Ganti src="..." dengan URL gambar produkmu.
+                Contoh: src="gambar/papan-1.jpg"
+                atau URL dari internet: src="https://..."
+              -->
+              <img src="https://placehold.co/400x300/e8f5e9/3a7d44?text=🌺+Papan+Bunga" alt="Papan Bunga Selamat" class="img-fluid"/>
+              <span class="card-badge">Papan Bunga</span>
+            </div>
+            <div class="card-body-custom">
+              <!-- GANTI nama produk di sini -->
+              <div class="card-product-name">Papan Bunga Selamat Grand Opening Deluxe</div>
+              <!-- GANTI harga di sini -->
+              <div class="card-price">Rp 750.000</div>
+              <!-- GANTI nomor WA dan teks pesan di sini -->
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Papan%20Bunga%20Selamat%20Grand%20Opening%20Deluxe"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 2 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/f3e8ff/6a3d9a?text=🌸+Papan+Bunga" alt="Papan Bunga Duka" class="img-fluid"/>
+              <span class="card-badge">Papan Bunga</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Papan Bunga Duka Cita Elegan Putih</div>
+              <div class="card-price">Rp 600.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Papan%20Bunga%20Duka%20Cita"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 3 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/fff3e0/e65100?text=🌼+Papan+Bunga" alt="Papan Bunga Wisuda" class="img-fluid"/>
+              <span class="card-badge">Papan Bunga</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Papan Bunga Selamat Wisuda Premium</div>
+              <div class="card-price">Rp 850.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Papan%20Bunga%20Wisuda"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 4 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/e8f5e9/2e7d32?text=🌷+Papan+Bunga" alt="Papan Bunga Ulang Tahun" class="img-fluid"/>
+              <span class="card-badge">Papan Bunga</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Papan Bunga Selamat Ulang Tahun Ceria</div>
+              <div class="card-price">Rp 700.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Papan%20Bunga%20Ulang%20Tahun"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- akhir row produk papan bunga -->
+    </div>
+  </section>
+  <!-- akhir SECTION 1: PAPAN BUNGA -->
+
+
+  <!-- ============================================================
+    SECTION 2: BUKET BUNGA
+    Section ini bergantian warna hijau muda (section-hijau)
+    agar halaman tidak monoton.
+  ============================================================ -->
+  <section class="py-5 section-hijau" id="buket">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <div class="section-label">Koleksi Kami</div>
+        <h2 class="section-title">Buket Bunga</h2>
+        <p class="text-muted mt-2">Hadiah sempurna untuk orang-orang tersayang</p>
+        <div class="section-divider mx-auto"></div>
+      </div>
+
+      <div class="row g-3 g-lg-4">
+
+        <!-- ── PRODUK 1 ── GANTI nama, harga, dan nomor WA ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/fce4ec/c62828?text=💐+Buket" alt="Buket Mawar Merah" class="img-fluid"/>
+              <span class="card-badge" style="background:#e91e63;">Buket</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Buket Mawar Merah Romantis 12 Tangkai</div>
+              <div class="card-price">Rp 350.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Buket%20Mawar%20Merah%2012%20Tangkai"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 2 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/e8f5e9/1b5e20?text=💐+Buket" alt="Buket Mix Pastel" class="img-fluid"/>
+              <span class="card-badge" style="background:#e91e63;">Buket</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Buket Mix Bunga Pastel untuk Wisuda</div>
+              <div class="card-price">Rp 280.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Buket%20Mix%20Pastel%20Wisuda"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 3 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/fff8e1/f57f17?text=🌻+Buket" alt="Buket Bunga Matahari" class="img-fluid"/>
+              <span class="card-badge" style="background:#e91e63;">Buket</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Buket Bunga Matahari Ceria & Segar</div>
+              <div class="card-price">Rp 220.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Buket%20Bunga%20Matahari"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 4 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/f3e5f5/6a1b9a?text=🌸+Buket" alt="Buket Lily Premium" class="img-fluid"/>
+              <span class="card-badge" style="background:#e91e63;">Buket</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Buket Lily & Tulip Premium Elegan</div>
+              <div class="card-price">Rp 420.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Buket%20Lily%20Tulip%20Premium"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- akhir row buket -->
+    </div>
+  </section>
+  <!-- akhir SECTION 2: BUKET BUNGA -->
+
+
+  <!-- ============================================================
+    SECTION 3: RANGKAIAN BUNGA
+    Kembali ke warna putih agar bergantian dengan section hijau.
+  ============================================================ -->
+  <section class="py-5 section-putih" id="rangkaian">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <div class="section-label">Koleksi Kami</div>
+        <h2 class="section-title">Rangkaian Bunga</h2>
+        <p class="text-muted mt-2">Dekorasi elegan untuk ruangan & meja resepsi</p>
+        <div class="section-divider mx-auto"></div>
+      </div>
+
+      <div class="row g-3 g-lg-4">
+
+        <!-- ── PRODUK 1 ── GANTI nama, harga, dan nomor WA ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/e0f2f1/00695c?text=🌿+Rangkaian" alt="Rangkaian Meja" class="img-fluid"/>
+              <span class="card-badge" style="background:#00897b;">Rangkaian</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Rangkaian Bunga Meja Minimalis Modern</div>
+              <div class="card-price">Rp 180.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Rangkaian%20Bunga%20Meja%20Minimalis"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 2 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/fce4ec/880e4f?text=🌺+Rangkaian" alt="Rangkaian Pernikahan" class="img-fluid"/>
+              <span class="card-badge" style="background:#00897b;">Rangkaian</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Rangkaian Bunga Pernikahan Mewah & Elegan</div>
+              <div class="card-price">Rp 1.200.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Rangkaian%20Bunga%20Pernikahan"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 3 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/e8f5e9/2e7d32?text=🌷+Rangkaian" alt="Rangkaian Ulang Tahun" class="img-fluid"/>
+              <span class="card-badge" style="background:#00897b;">Rangkaian</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Rangkaian Bunga Ulang Tahun dalam Vas</div>
+              <div class="card-price">Rp 320.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Rangkaian%20Bunga%20Ulang%20Tahun%20Vas"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PRODUK 4 ── -->
+        <div class="col-6 col-lg-3">
+          <div class="product-card">
+            <div class="card-img-wrapper">
+              <img src="https://placehold.co/400x300/fff3e0/bf360c?text=🌻+Rangkaian" alt="Rangkaian Hamper" class="img-fluid"/>
+              <span class="card-badge" style="background:#00897b;">Rangkaian</span>
+            </div>
+            <div class="card-body-custom">
+              <div class="card-product-name">Hamper Bunga & Coklat Spesial Gift Box</div>
+              <div class="card-price">Rp 450.000</div>
+              <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20pesan%20Hamper%20Bunga%20dan%20Coklat"
+                 target="_blank" class="btn btn-wa">
+                <i class="bi bi-whatsapp me-1"></i> Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- akhir row rangkaian -->
+    </div>
+  </section>
+  <!-- akhir SECTION 3: RANGKAIAN BUNGA -->
+
+
+  <!-- ============================================================
+    FOOTER — Bagian paling bawah halaman
+    
+    Ubah informasi toko, alamat, dan link sosmed di sini.
+    Untuk sosmed: ganti href="..." ke URL profil media sosialmu.
+  ============================================================ -->
+  <footer class="pt-5 pb-2 mt-3">
+    <div class="container">
+      <div class="row gy-4">
+
+        <!-- Kolom 1: Info Toko -->
+        <div class="col-md-4">
+          <!-- GANTI nama toko di sini -->
+          <h5><i class="bi bi-flower1 me-1"></i> BungaSegar</h5>
+          <p class="mt-2" style="font-size:0.9rem; color:#9ec9a2;">
+            <!-- GANTI deskripsi toko di sini -->
+            Menyediakan bunga segar berkualitas untuk setiap momen spesialmu
+            sejak tahun 2021. Melayani pengiriman ke seluruh kota.
+          </p>
+          <!-- Link sosial media — GANTI href ke akun milikmu -->
+          <div class="mt-3">
+            <a href="#" class="social-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://wa.me/6281234567890" class="social-icon" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="social-icon" title="TikTok"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Tautan Cepat -->
+        <div class="col-md-2 col-6">
+          <h5 style="font-size:0.95rem;">Katalog</h5>
+          <ul class="list-unstyled mt-2" style="font-size:0.88rem;">
+            <li class="mb-1"><a href="#papan-bunga"><i class="bi bi-chevron-right me-1"></i>Papan Bunga</a></li>
+            <li class="mb-1"><a href="#buket"><i class="bi bi-chevron-right me-1"></i>Buket Bunga</a></li>
+            <li class="mb-1"><a href="#rangkaian"><i class="bi bi-chevron-right me-1"></i>Rangkaian</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Kontak -->
+        <div class="col-md-3 col-6">
+          <h5 style="font-size:0.95rem;">Kontak</h5>
+          <ul class="list-unstyled mt-2" style="font-size:0.88rem; color:#9ec9a2;">
+            <!-- GANTI informasi kontak di sini -->
+            <li class="mb-2"><i class="bi bi-whatsapp me-2"></i>0812-3456-7890</li>
+            <li class="mb-2"><i class="bi bi-envelope me-2"></i>hello@bungasegar.id</li>
+            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Jl. Melati No. 12, Kota Bunga</li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Jam Operasional -->
+        <div class="col-md-3">
+          <h5 style="font-size:0.95rem;">Jam Buka</h5>
+          <ul class="list-unstyled mt-2" style="font-size:0.88rem; color:#9ec9a2;">
+            <!-- GANTI jam operasional di sini -->
+            <li class="mb-2"><i class="bi bi-clock me-2"></i>Senin – Sabtu: 08.00 – 20.00</li>
+            <li class="mb-2"><i class="bi bi-clock me-2"></i>Minggu: 09.00 – 17.00</li>
+            <li class="mt-2">
+              <span style="background:rgba(58,125,68,0.3); color:#a8d5b5; font-size:0.78rem; padding:3px 10px; border-radius:50px;">
+                <i class="bi bi-circle-fill me-1" style="font-size:0.5rem; color:#4caf50;"></i> Buka Hari Ini
+              </span>
+            </li>
+          </ul>
+        </div>
+
+      </div><!-- akhir row footer -->
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="footer-bottom mt-4">
+      <!-- GANTI nama toko dan tahun di sini -->
+      &copy; 2025 BungaSegar. Dibuat dengan <i class="bi bi-heart-fill" style="color:#e57373;"></i> untuk pelanggan setia kami.
+    </div>
+  </footer>
+  <!-- akhir FOOTER -->
+
+
+  <!-- ============================================================
+    CDN: Bootstrap 5 JavaScript
+    Harus diletakkan di BAWAH sebelum </body> agar halaman load lebih cepat.
+    JS Bootstrap diperlukan untuk: navbar hamburger mobile, dropdown, modal, dll.
+  ============================================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
