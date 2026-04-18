@@ -174,7 +174,6 @@
       font-size: 9rem;
       line-height: 1;
       filter: drop-shadow(0 20px 40px rgba(58,125,68,0.2));
-      animation: float 3s ease-in-out infinite;
     }
 
     /* Animasi mengambang untuk visual hero */
@@ -364,12 +363,12 @@
     .stat-number {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--hijau-utama);
+      color: var(--putih-utama);
     }
 
     .stat-label {
       font-size: 0.85rem;
-      color: #6b7f6e;
+      color: #ffffff;
       font-weight: 500;
     }
 
@@ -507,6 +506,12 @@
       padding: 18px;
       background-size: 50%;
     }
+
+    .ukuran-logo {
+      max-width: 450px;
+      max-height: auto;
+      object-fit: contain;
+    }
   </style>
 </head>
 
@@ -526,7 +531,7 @@
 
       <!-- ── Logo / Nama Toko ── GANTI NAMA DI SINI ── -->
       <a class="navbar-brand" href="#">
-        <i class="bi bi-flower1 me-1"></i>Flora<span>Santa Indonesia</span>
+        </i>Flora<span>Santa Indonesia</span>
       </a>
 
       <!-- Tombol hamburger untuk layar mobile (otomatis oleh Bootstrap) -->
@@ -594,7 +599,7 @@
               Lihat Katalog <i class="bi bi-arrow-down-circle ms-1"></i>
             </a>
             <!-- GANTI nomor WA di href berikut -->
-            <a href="https://wa.me/6282234643957" target="_blank" class="btn btn-outline-hijau">
+            <a href="https://wa.me/6282234643957" target="_blank" class="btn btn-hijau">
               <i class="bi bi-whatsapp me-1"></i> Pesan Sekarang
             </a>
           </div>
@@ -603,7 +608,7 @@
         <!-- Kolom kanan: visual/gambar -->
         <div class="col-lg-6 text-center">
           <!-- Ganti emoji ini dengan tag <img> jika kamu sudah punya foto -->
-          <div class="hero-visual">🌸</div>
+          <div class="hero-visual"><img src="logo.png" class="ukuran-logo"></div>
         </div>
 
       </div>
@@ -1027,11 +1032,11 @@
         <!-- Kolom 1: Info Toko -->
         <div class="col-md-4">
           <!-- GANTI nama toko di sini -->
-          <h5><i class="bi bi-flower1 me-1"></i> BungaSegar</h5>
+          <h5></i>FloraSanta</h5>
           <p class="mt-2" style="font-size:0.9rem; color:#9ec9a2;">
             <!-- GANTI deskripsi toko di sini -->
-            Menyediakan bunga segar berkualitas untuk setiap momen spesialmu
-            sejak tahun 2021. Melayani pengiriman ke seluruh kota.
+            Menyediakan rangkaian bunga berkualitas untuk setiap momen spesialmu
+            sejak tahun 2021. Melayani pengiriman ke seluruh kabupaten/kota di Bali.
           </p>
           <!-- Link sosial media — GANTI href ke akun milikmu -->
           <div class="mt-3">
@@ -1057,9 +1062,9 @@
           <h5 style="font-size:0.95rem;">Kontak</h5>
           <ul class="list-unstyled mt-2" style="font-size:0.88rem; color:#9ec9a2;">
             <!-- GANTI informasi kontak di sini -->
-            <li class="mb-2"><i class="bi bi-whatsapp me-2"></i>0812-3456-7890</li>
+            <li class="mb-2"><i class="bi bi-whatsapp me-2"></i>0822-3464-3957</li>
             <li class="mb-2"><i class="bi bi-envelope me-2"></i>hello@bungasegar.id</li>
-            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Jl. Melati No. 12, Kota Bunga</li>
+            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Jl. Kepundung No.6, Kota Denpasar</li>
           </ul>
         </div>
 
