@@ -26,7 +26,9 @@
       --spacing-3xl: 64px;
       --spacing-4xl: 80px;
     }
-
+#kategori {
+  scroll-margin-top: 80px;
+}
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -725,7 +727,7 @@
     }
 
     .card-price {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--sage);
@@ -1000,11 +1002,12 @@
     }
 
     .modal-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--sage);
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      letter-spacing: -0.3px;
     }
 
     .btn-wa-modal {

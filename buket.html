@@ -157,14 +157,6 @@
             <a href="#" class="social-link"><i class="bi bi-tiktok"></i></a>
           </div>
         </div>
-        <div class="col-6 col-lg-2">
-          <div class="footer-heading">Katalog</div>
-          <ul class="footer-links">
-            <li><a href="papan-bunga.html">Papan Bunga</a></li>
-            <li><a href="buket.html">Buket Bunga</a></li>
-            <li><a href="rangkaian.html">Rangkaian</a></li>
-          </ul>
-        </div>
         <div class="col-6 col-lg-3">
           <div class="footer-heading">Jam Buka</div>
           <div class="footer-contact-item"><i class="bi bi-clock"></i> Senin – Sabtu: 08.00 – 20.00</div>
@@ -196,38 +188,6 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    // ═══════ INIT ═══════
-    AOS.init({ once: true, offset: 60 });
-
-    // Navbar scroll
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-
-    // Progress bar
-    const bar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-      const total = document.body.scrollHeight - window.innerHeight;
-      bar.style.width = (window.scrollY / total * 100) + '%';
-    });
-
-    // ═══════ MODAL ═══════
-    function closeModal() {
-      document.getElementById('modal-overlay').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target.id === 'modal-overlay') closeModal(); });
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.addEventListener('click', () => {
-        document.getElementById('modal-name').textContent = card.dataset.name;
-        document.getElementById('modal-price').textContent = card.dataset.price;
-        document.getElementById('modal-img').src = card.dataset.img;
-        document.getElementById('modal-wa').href = card.dataset.wa;
-        document.getElementById('modal-overlay').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
